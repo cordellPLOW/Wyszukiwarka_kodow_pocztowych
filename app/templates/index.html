@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kody pocztowe</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.1/dist/bootstrap-table.min.css">
+    <style>
+        .nav-pills>li.active>a {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        .nav-pills>li>a {
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+                <a href="/" class="col align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                    <span class="fs-4">Wyszukiwarka kodów pocztowych</span>
+                </a>
+            </header>
+        </div>
+        <section>
+            <div class="container justify-content-center">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title d-inline">Po kodzie pocztowym</h5>
+                                <a href="{{ url_for('postcode_search') }}" class="btn btn-outline-secondary btn-sm">Wyświetl formularz</a>
+                                {% block form_pc %}{% endblock form_pc %}
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title d-inline">Po nazwie miejscowości</h5>
+                                <a href="{{ url_for('cityname_search') }}" class="btn btn-outline-secondary btn-sm">Wyświetl formularz</a>
+                                {% block form_cn %}{% endblock form_cn %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {% block content %}{% endblock content %}
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.21.1/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.21.1/dist/locale/bootstrap-table-pl-PL.min.js"></script>
+    {% block scripts %}{% endblock scripts %}
+</body>
+
+</html>

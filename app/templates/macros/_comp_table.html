@@ -1,0 +1,43 @@
+{% macro render_table(headres, data) %}
+    <table id="table" 
+        data-toggle="table" 
+        data-search="true" 
+        data-show-export="true"
+        data-toolbar="#toolbar" 
+        data-show-pagination-switch="true"
+        data-show-toggle="true" 
+        data-show-columns="true" 
+        data-toolbar-align="left"
+        data-show-fullscreen="true" 
+        data-pagination="true" 
+        data-show-multi-sort="true" 
+        data-classes="
+            table 
+            table-sm 
+            table-responsive
+            table-hover
+            align-middle">
+        {# renderowanie dagłówków tabeli #}
+        <thead class="bg-secondary bg-opacity-25">
+            {% for header in headres %}
+                <th class=" fs-6 fw-normal" data-halign="left" data-align="left" data-sortable="true">
+                    {{ header }}
+                </th>
+            {% endfor %}
+        </thead>
+        {# rednerowanie body tabeli i weryfikacja formatów #}
+        <tbody>
+            {% for row in data %}
+                <tr>
+                    <td>{{row.code}}</td>
+                    <td>{{row.address}}</td>
+                    <td>{{row.town}}</td>
+                    <td>{{row.province[11:]}}</td>
+                    <td>{{row.county}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endmacro %}
+
+{% block scripts %}{% endblock %}

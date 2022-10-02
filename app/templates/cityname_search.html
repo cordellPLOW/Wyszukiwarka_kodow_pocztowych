@@ -1,0 +1,49 @@
+{% extends "index.html" %}
+{% from "macros/_comp_table.html" import render_table %}
+
+{% block form_cn %}
+<div class="container justify-content-center">
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <fieldset class="mx-auto mt-4" style="width: 300px;">
+            <div class="form-floating mb-2">
+                {{ form.town(class="form-control", id="floating_cn", placeholder=" ") }}
+                {{ form.town.label(class="form-control-label color_gray", for="floating_cn") }}
+                {% if form.town.errors %}
+                {% for error in form.town.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+                {% endif %}
+            </div>
+            {{ form.submit(class="form-control btn btn-secondary") }}
+        </fieldset>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{category}} d-flex align-items-center mt-3" role="alert">
+            <div>
+                {{ message }}
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </form>
+</div>
+{% endblock form_cn %}
+{% block content %}
+<div class="container justify-content-center">
+    {% if data %}
+    {% set headers=[
+    'Kod',
+    'Ulica',
+    'Miasto',
+    'Województwo',
+    'Powiat']
+    %}
+    {{ render_table(headers, data) }}
+    {% endif %}
+</div>
+
+
+{% endblock content %}
