@@ -15,7 +15,8 @@ def cityname_search():
     form = CitynameSearchForm()
     data = None
     if form.validate_on_submit():
-        data = Postcode.query.filter_by(town=form.town.data).order_by(Postcode.address.asc()).all()
+        cityname = form.town.data.capitalize()
+        data = Postcode.query.filter_by(town=cityname).order_by(Postcode.address.asc()).all()
         if not data:
             flash("Nie znaleziono danych na podstawie przekazanych informacji", category="info")
     return render_template('cityname_search.html', form=form, data=data)
