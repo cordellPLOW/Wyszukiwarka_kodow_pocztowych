@@ -15,7 +15,7 @@ def cityname_search():
     form = CitynameSearchForm()
     data = None
     if form.validate_on_submit():
-        data = Postcode.query.filter_by(town=form.town.data).all()
+        data = Postcode.query.filter_by(town=form.town.data).order_by(Postcode.address.asc()).all()
         if not data:
             flash("Nie znaleziono danych na podstawie przekazanych informacji", category="info")
     return render_template('cityname_search.html', form=form, data=data)
@@ -26,7 +26,7 @@ def postcode_search():
     form = PostcodeSearchForm()
     data = None
     if form.validate_on_submit():
-        data = Postcode.query.filter_by(code=form.code.data).all()
+        data = Postcode.query.filter_by(code=form.code.data).order_by(Postcode.address.asc()).all()
         if not data:
             flash("Nie znaleziono danych na podstawie przekazanych informacji", category="info")
     return render_template('postcode_search.html', form=form, data=data)
